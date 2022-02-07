@@ -7,10 +7,12 @@ inputs:
   input:  # id of input
     description: 'input'
     required: true
-
 outputs:
   result: # id of output
     description: 'The time we greeted you'
 runs:
-  using: 'node16'
-  main: 'index.js'
+  using: docker
+  image: Dockerfile
+branding:
+  color: "green"
+  icon: "arrow-right-circle"
