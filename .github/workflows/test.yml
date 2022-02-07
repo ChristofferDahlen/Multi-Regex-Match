@@ -12,10 +12,10 @@ jobs:
           - "this string has animals: horse\n and cars: volvo "
           - "\\/"
         check:
-          - "{ \"dog\" : \"dog\", \"cat\" : \"cat\" }"
-          - "{ \"animal\" : \"(dog\|cat)\",  }"
-          - "{ \"Car\" : \"(volvo\|BMW)\" }"
-          - "{ \"Car\" : \"(volvo\|BMW)\", \"animal\" : \"(dog|cat)\" }"
+          - '{"dog" : "dog", "cat": "cat"}'
+          - '{ "animal" : "(dog|cat)"  }'
+          - '{ "Car" : "(volvo|BMW)" }'
+          - '{ "Car" : "(volvo|BMW)", "animal" : "(dog|cat)" }'
     steps:
       - uses: actions/checkout@v2
       - name: Manual Action Test
