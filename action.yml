@@ -1,0 +1,16 @@
+name: 'Match input to first found key'
+description: ''
+inputs:
+  json_match:  # id of input
+    description: 'Who to greet'
+    required: true
+  input:  # id of input
+    description: 'input'
+    required: true
+
+outputs:
+  result: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node16'
+  main: 'index.js'

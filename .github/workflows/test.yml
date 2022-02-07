@@ -1,0 +1,30 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+
+    strategy:
+      matrix:
+        input:
+          - "this string has animals: dog, cat"
+          - "this string has animals: horse\n and cars: volvo "
+        check:
+          - "{ \"dog\" : \"dog\", \"cat\" : \"cat\" }"
+          - "{ \"animal\" : \"(dog|cat)\",  }"
+          - "{ \"Car\" : \"\/(volvo|BMW)\/im\" }"
+          - "{ \"Car\" : \"\/(volvo|BMW)\/im\", \"animal\" : \"(dog|cat)\" }"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Manual Action Test
+        id: test_action
+        uses: ./
+        with:
+          input: ${{ matrix.input }}
+          json_match: ${{ matrix.check }}
+      - name: Show result
+        run: |
+          echo "{{ steps.test_action.outputs.result }}"
+
