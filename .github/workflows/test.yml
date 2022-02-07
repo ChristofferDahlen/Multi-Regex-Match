@@ -9,12 +9,12 @@ jobs:
       matrix:
         input:
           - "this string has animals: dog, cat"
-          - "this string has animals: horse\n and cars: volvo "
+          - "this string has animals: horse\n and cars: Volvo "
           - "\\/"
         check:
           - '{"dog" : "dog", "cat": "cat"}'
           - '{ "animal" : "(dog|cat)"  }'
-          - '{ "Car" : "(volvo|BMW)" }'
+          - '{ "animal" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}'
           - '{ "Car" : "(volvo|BMW)", "animal" : "(dog|cat)" }'
     steps:
       - uses: actions/checkout@v2
