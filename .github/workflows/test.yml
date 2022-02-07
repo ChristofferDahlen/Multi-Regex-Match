@@ -10,9 +10,9 @@ jobs:
       matrix:
         check:
           - '{"dog" : "dog", "cat": "cat"}'
-          - '{ "/(dog|cat)/" : "animal"   }'
-          - '{ "/(dog|cat)/im" : "animal", "/(volvo|BMW)/im" : "Car"}'
-          - '{ "/(volvo|BMW)/im" : "Car", "/(dog|cat)/im" : "animal"}'
+          - '{ "/(dog|cat)/img" : "animal"   }'
+          - '{ "/(dog|cat)/img" : "animal", "/(volvo|BMW)/im" : "Car"}'
+          - '{ "/(volvo|BMW)/img" : "Car", "/(dog|cat)/im" : "animal"}'
     steps:
       - uses: actions/checkout@v2
       - name: Manual Action Test
