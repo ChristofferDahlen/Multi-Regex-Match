@@ -12,7 +12,7 @@ import (
 
 func main() {
 	fmt.Printf("t")
-	checkRegexp(`{ "test\\s" : "test"}`, "test b", true)
+	//checkRegexp(`{ "test\\s" : "test"}`, "test b", true)
 
 	if err := run(context.Background()); err != nil {
 		log.Fatal(err)
@@ -61,7 +61,7 @@ func run(context.Context) error {
 
 	input := os.Getenv("INPUT_INPUT")
 	jsonData := os.Getenv("INPUT_JSON_MATCH")
-	checkIfNoFound := os.Getenv("INPUT_SUCCESS_IF_NO_MATCH")
+	checkIfNoFound := os.Getenv("INPUT_FAIL_IF_NO_MATCH")
 
 	check := strings.ToLower(checkIfNoFound) == "true"
 

@@ -21,7 +21,7 @@ jobs:
         with:
           input: "this string has animals: cat\n and cars: Volvo "
           json_match: ${{ matrix.check }}
-          success_if_no_match: false
+          fail_if_no_match: True
       - run: |
           echo "${{ steps.test_action.outputs.result }}"
 
@@ -34,8 +34,8 @@ jobs:
       matrix:
         check:
           - '{
-          "animal[^\\w\\n\\r]*dog\\b" : "dog", 
-          "animal[^\\w\\n\\r]*cat\\b": "cat"
+          "(i?)animal[^\\w\\n\\r]*dog\\b" : "dog", 
+          "(i?)animal[^\\w\\n\\r]*cat\\b": "cat"
           }'
     steps:
       - uses: actions/checkout@v2
@@ -45,6 +45,6 @@ jobs:
         with:
           input: "animal:   CAT"
           json_match: ${{ matrix.check }}
-          success_if_no_match: False
+          fail_if_no_match: True
       - run: |
           echo "${{ steps.test_action.outputs.result }}"
