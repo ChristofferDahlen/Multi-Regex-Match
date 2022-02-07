@@ -1,20 +1,16 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  test1:
     runs-on: ubuntu-latest
     name: test
 
     strategy:
       matrix:
-        input:
-          - "this string has animals: dog, cat"
-          - "this string has animals: horse\n and cars: Volvo "
-          - "\\/"
         check:
           - '{"dog" : "dog", "cat": "cat"}'
           - '{ "animal" : "(dog|cat)"  }'
-          - '{ "animal" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}'
+          - '{ "/" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}'
           - '{ "Car" : "(volvo|BMW)", "animal" : "(dog|cat)" }'
     steps:
       - uses: actions/checkout@v2
@@ -22,9 +18,31 @@ jobs:
         id: test_action
         uses: ./
         with:
-          input: ${{ matrix.input }}
+          input: "this string has animals: horse\n and cars: Volvo "
           json_match: ${{ matrix.check }}
       - name: Show result
         run: |
           echo "${{ steps.test_action.outputs.result }}"
 
+  test2:
+    runs-on: ubuntu-latest
+    name: test
+
+    strategy:
+      matrix:
+        check:
+          - '{
+          "animal[^\\w\\n\\r]*dog\\b" : "dog", 
+          "animal[^\\w\\n\\r]*cat\\b": "cat"
+          }'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Manual Action Test
+        id: test_action
+        uses: ./
+        with:
+          input: "animal:   CAT"
+          json_match: ${{ matrix.check }}
+      - name: Show result
+        run: |
+          echo "${{ steps.test_action.outputs.result }}"
