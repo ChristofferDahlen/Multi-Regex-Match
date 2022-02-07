@@ -23,9 +23,10 @@ func Debug(msg string) {
 	fmt.Printf("\n::debug::%s", msg)
 }
 
-func Output(key string, value string) {
+func Output(key string, value string) error {
 	fmt.Printf("\n::set-output name=%s::%s", key, value)
 
+	return nil
 }
 
 func checkRegexp(jsonData string, input string, check bool) error {
@@ -45,8 +46,7 @@ func checkRegexp(jsonData string, input string, check bool) error {
 
 		match := reg.MatchString(input)
 		if match {
-			Output("result", value)
-			break
+			return Output("result", value)
 		}
 	}
 
