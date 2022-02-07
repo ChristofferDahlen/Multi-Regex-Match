@@ -44,7 +44,7 @@ jobs:
         with:
           input: "animal:   CAT"
           json_match: ${{ matrix.check }}
-          success_if_no_match: false
+          success_if_no_match: False
       - name: Show result
         run: |
           echo "${{ steps.test_action.outputs.result }}"
