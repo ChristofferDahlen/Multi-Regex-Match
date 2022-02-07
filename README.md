@@ -13,7 +13,7 @@ steps:
     uses: ChristofferDahlen/Multi-Regex-Match@v1
     with:
       input: "This is the test string. It contains cats "
-      json_match: '{ "animal" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}' # Imbedded json 
+      json_match: '{ "(?i)(dog|cat)" : "animal", "(?i)(volvo|BMW)" : "(volvo|BMW)"}' # Imbedded json 
 ```
 
 The output can then be acessed as ``${{ steps.match.outputs.result }}``
@@ -23,7 +23,7 @@ The output can then be acessed as ``${{ steps.match.outputs.result }}``
 
 | Input | Description | Required | 
 | --- | --- | ---  |
-| `json_match` | A json string containing a key-value pairs. The value is the regex expression used for matching (javascript style). The key is the returned output if it has been sucessfully matched. It returns only the first match. If you want to use flags they are embedded as for example `/[\W]*/im` |   yes    |
+| `json_match` | A json string containing a key-value pairs. The key is the regex expression used for matching (javascript style). The value is the returned output if it has been sucessfully matched. It returns only the first match. If you want to use flags they are embedded as for example `/[\W]*/im` |   yes    |
 | `input` | The input string that is used to match against|   yes    |
 
 | Ouput |  Description |
@@ -33,10 +33,12 @@ The output can then be acessed as ``${{ steps.match.outputs.result }}``
 
 ## Json matching format
 
+**The regex is in the golang dialect**
+
 ```json
 { 
-"OutKey1" : "Regexp 1",
-"OutKey2" : "Regexp 2", 
+"Regexp 1" : "outValue",
+"Regexp 2" : "outValue", 
 ...
 }
 ```
