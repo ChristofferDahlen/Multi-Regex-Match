@@ -9,9 +9,9 @@ jobs:
       matrix:
         check:
           - '{"dog" : "dog", "cat": "cat"}'
-          - '{ "animal" : "(dog|cat)"  }'
-          - '{ "/" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}'
-          - '{ "Car" : "(volvo|BMW)", "animal" : "(dog|cat)" }'
+          - '{ "(dog|cat)" : "animal"   }'
+          - '{ "/(dog|cat)/im" : "animal", "/(volvo|BMW)/im" : "Car"}'
+          - '{ "/(volvo|BMW)/im" : "Car", "/(dog|cat)/im" : "animal"}'
     steps:
       - uses: actions/checkout@v2
       - name: Manual Action Test
@@ -20,6 +20,7 @@ jobs:
         with:
           input: "this string has animals: horse\n and cars: Volvo "
           json_match: ${{ matrix.check }}
+          success_if_no_match: false
       - name: Show result
         run: |
           echo "${{ steps.test_action.outputs.result }}"
