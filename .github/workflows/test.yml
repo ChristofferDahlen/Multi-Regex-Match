@@ -33,7 +33,7 @@ jobs:
         check:
           - '{
           "\/animal[^\\w\\n\\r]*dog\\b\/i" : "dog", 
-          "\/animal[^\\w\\n\\r]*cat\\b"\/i: "cat"
+          "\/animal[^\\w\\n\\r]*cat\\b\/i": "cat"
           }'
     steps:
       - uses: actions/checkout@v2
