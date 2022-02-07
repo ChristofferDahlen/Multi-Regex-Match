@@ -1,30 +1,42 @@
 # Key Match Action
 
-A simple action that checks if a string is matched against a specific regexp. Returns the key for the first matched regexp 
+A simple action that looks for multiple regex matches, in a input text, and returns the key of the first found match. 
 
-´´´
-{ "output-key1" : "Regexp1",
-  "output-key2" : "Regexp2}
+## TO RUN
+
+Add the step to your github action yml
+
+```yaml
+steps:
+  - name: Manual Action Test
+    id: match
+    uses: ChristofferDahlen/Multi-Regex-Match@v1
+    with:
+      input: "This is the test string. It contains cats "
+      json_match: '{ "animal" : "/(dog|cat)/im", "Car" : "/(volvo|BMW)/im"}' # Imbedded json 
+```
+
+The output can then be acessed as ``${{ steps.match.outputs.result }}``
+
+
+## Parameters
+
+| Input | Description | Required | 
+| --- | --- | ---  |
+| `json_match` | A json string containing a key-value pairs. The value is the regex expression used for matching (javascript style). The key is the returned output if it has been sucessfully matched. It returns only the first match. If you want to use flags they are embedded as for example `/[\W]*/im` |   yes    |
+| `input` | The input string that is used to match against|   yes    |
+
+| Ouput |  Description |
+| --- | --- |
+| `result` | The key of the first found match |
+
+
+## Json matching format
+
+```json
+{ 
+"OutKey1" : "Regexp 1",
+"OutKey2" : "Regexp 2", 
+...
 }
-´´´
-
-# Example
-
-We have the following input
-
-´´´
-this string has animals: horse
-and cars: Volvo 
-´´´
-
-with the json match
-
-´´´
-{ "Car" : "/(volvo|BMW)/im", "animal" : "(dog|cat)" }
-´´´
-
-We get the following result
-
-´´´
-Car
-´´´
+```
