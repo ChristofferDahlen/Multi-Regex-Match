@@ -10,14 +10,12 @@ jobs:
         input:
           - "this string has animals: dog, cat"
           - "this string has animals: horse\n and cars: volvo "
-          - ${{ secret.inputSecret }}
           - "\\/"
         check:
           - "{ \"dog\" : \"dog\", \"cat\" : \"cat\" }"
           - "{ \"animal\" : \"(dog|cat)\",  }"
           - "{ \"Car\" : \"(volvo|BMW)\" }"
           - "{ \"Car\" : \"(volvo|BMW)\", \"animal\" : \"(dog|cat)\" }"
-          - ${{ secret.outputSecret }}
     steps:
       - uses: actions/checkout@v2
       - name: Manual Action Test
