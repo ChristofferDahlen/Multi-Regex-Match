@@ -7,6 +7,10 @@ inputs:
   input:  # id of input
     description: 'input'
     required: true
+  success_if_no_match:
+    required: false
+    default: "true"
+    description: 'If we should fail  '
 outputs:
   result: # id of output
     description: 'The time we greeted you'

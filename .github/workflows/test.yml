@@ -32,8 +32,8 @@ jobs:
       matrix:
         check:
           - '{
-          "animal[^\\w\\n\\r]*dog\\b" : "dog", 
-          "animal[^\\w\\n\\r]*cat\\b": "cat"
+          "\/animal[^\\w\\n\\r]*dog\\b\/i" : "dog", 
+          "\/animal[^\\w\\n\\r]*cat\\b"\/i: "cat"
           }'
     steps:
       - uses: actions/checkout@v2
@@ -43,6 +43,7 @@ jobs:
         with:
           input: "animal:   CAT"
           json_match: ${{ matrix.check }}
+          success_if_no_match: false
       - name: Show result
         run: |
           echo "${{ steps.test_action.outputs.result }}"
