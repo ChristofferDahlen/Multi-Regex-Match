@@ -13,7 +13,7 @@ jobs:
         check:
           - "{ \"dog\" : \"dog\", \"cat\" : \"cat\" }"
           - "{ \"animal\" : \"(dog|cat)\",  }"
-          - "{ \"Car\" : \"\/(volvo|BMW)\/im\" }"
+          - "{ \"Car\" : \"(volvo|BMW)\" }"
           - "{ \"Car\" : \"\/(volvo|BMW)\/im\", \"animal\" : \"(dog|cat)\" }"
 
     steps:
