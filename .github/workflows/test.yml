@@ -34,8 +34,8 @@ jobs:
       matrix:
         check:
           - '{
-          "(i?)animal[^\\w\\n\\r]*dog\\b" : "dog", 
-          "(i?)animal[^\\w\\n\\r]*cat\\b": "cat"
+          "(?i)animal[^\\w\\n\\r]*dog\\b" : "dog", 
+          "(?i)animal[^\\w\\n\\r]*cat\\b": "cat"
           }'
     steps:
       - uses: actions/checkout@v2
