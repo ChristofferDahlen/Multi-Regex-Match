@@ -23,12 +23,12 @@ The output can then be acessed as ``${{ steps.match.outputs.result }}``
 
 | Input | Description | Required | 
 | --- | --- | ---  |
-| `json_match` | A json string containing a key-value pairs. The key is the regex expression used for matching (javascript style). The value is the returned output if it has been sucessfully matched. It returns only the first match. If you want to use flags they are embedded as for example `/[\W]*/im` |   yes    |
+| `json_match` | A json string containing a key-value pairs. The key is the regex expression used for matching (go flavor). The value is the returned output if it has been sucessfully matched. It returns only the first match. |   yes    |
 | `input` | The input string that is used to match against|   yes    |
 
 | Ouput |  Description |
 | --- | --- |
-| `result` | The key of the first found match |
+| `result` | The value (of the key value pair) of the first found match |
 
 
 ## Json matching format
