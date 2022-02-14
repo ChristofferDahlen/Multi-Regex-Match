@@ -1,5 +1,5 @@
 name: 'Match input to first found key'
-description: ''
+description: 'Regex search for multiple expressions'
 inputs:
   json_match:  # id of input
     description: 'Who to greet'
